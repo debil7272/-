@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love Baklushi ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f6f0;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600') center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        header h1 .heart {
+            color: #ff3d5a;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+        }
+
+        .flag {
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+
+        /* Навигация */
+        nav {
+            background: #2e7d32;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 18px 25px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #1b5e20;
+        }
+
+        /* Секции */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #ffb300;
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* Жители */
+        .residents {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .resident-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 6px solid #ffb300;
+        }
+
+        .resident-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.4);
+        }
+
+        .resident-card h3 {
+            color: #2e7d32;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .resident-card .status {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .resident-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item p {
+            padding: 12px;
+            text-align: center;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* Контакты */
+        .contacts {
+            background: #2e7d32;
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contacts h2 {
+            color: white;
+        }
+
+        .contacts h2::after {
+            background: #ffb300;
+        }
+
+        .contacts p {
+            font-size: 1.15rem;
+            margin: 10px 0;
+        }
+
+        .contacts a {
+            color: #ffd54f;
+            text-decoration: none;
+        }
+
+        .contacts a:hover {
+            text-decoration: underline;
+        }
+
+        /* Подвал */
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        footer .big-love {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8rem; }
+            header p { font-size: 1.1rem; }
+            section h2 { font-size: 1.8rem; }
+            nav ul li a { padding: 12px 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>I Love Baklushi <span class="heart">❤️</span></h1>
+        <p>Деревня, в которую влюбляешься с первого взгляда</p>
+        <div class="flag">🏡🌾🌳</div>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="#about">О деревне</a></li>
+            <li><a href="#residents">Жители</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <!-- О деревне -->
+    <section id="about">
+        <h2>О деревне</h2>
+        <p class="about-text">
+            Деревня <strong>Баклуши</strong> — уютный уголок, затерянный среди полей и лесов. 
+            Здесь время течёт медленно, а люди живут по совести и с юмором. 
+            Несмотря на скромные размеры, Баклуши известны далеко за пределами района — 
+            благодаря своим колоритным жителям.
+        </p>
+        <p class="about-text">
+            Говорят, само название деревни пошло от выражения «бить баклуши» — 
+            мол, живут здесь люди весёлые и не слишком обременённые суетой. 
+            Но кто хоть раз побывал в Баклушах, знает: здесь каждый день происходит 
+            что-то интересное. И каждый, кто уехал, обязательно возвращается.
+        </p>
+    </section>
+
+    <!-- Жители -->
+    <section id="residents">
+        <h2>Жители деревни</h2>
+        <div class="residents">
+
+            <div class="resident-card">
+                <div class="avatar">Л</div>
+                <h3>Лучесонус</h3>
+                <span class="status">🌟 Старейшина</span>
+                <p>Главный мудрец Баклуш. Знает всё про всех, но хранит секреты. 
+                Любит сидеть на завалинке и рассуждать о жизни. 
+                Его слово в деревне — закон.</p>
+            </div>
+
+            <div class="resident-card">
+                <div class="avatar">К</div>
+                <h3>Крузаль</h3>
+                <span class="status">🔨 Мастер на все руки</span>
+                <p>Любой забор починит, любую печь сложит. 
+                Без Крузаля в Баклушах ничего не строится и не чинится. 
+                Всегда с инструментом и добрым словом.</p>
+            </div>
+
+            <div class="resident-card">
+                <div class="avatar">Х</div>
+                <h3>Хохол</h3>
+                <span class="status">🎭 Душа компании</span>
+                <p>Где Хохол — там смех и веселье. 
+                Анекдоты рассказывает так, что даже куры на насесте смеются. 
+                Первый на всех праздниках и посиделках.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery">
+        <h2>Галерея</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600" alt="Природа">
+                <p>Природа Баклуш</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600" alt="Лес">
+                <p>Леса и поля</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600" alt="Поля">
+                <p>Бескрайние просторы</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600" alt="Солнце">
+                <p>Закаты над деревней</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts">
+        <div class="contacts">
+            <h2>Контакты</h2>
+            <p>📍 Деревня Баклуши, Заповедный район</p>
+            <p>📞 Телефон: <a href="tel:+70000000000">+7 (000) 000-00-00</a></p>
+            <p>✉️ Email: <a href="mailto:ilovebaklushi@example.com">ilovebaklushi@example.com</a></p>
+            <p>🌐 <a href="#">ВКонтакте</a> | <a href="#">Telegram</a></p>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p class="big-love">I Love Baklushi ❤️</p>
+        <p>© 2025 Деревня Баклуши. Сделано с любовью</p>
+    </footer>
+
+</body>
+</html>
